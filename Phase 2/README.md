@@ -1,64 +1,87 @@
-# Phase 2: Org Setup & Configuration
+# Phase 2: Org Setup & Configuration - Deliverables
 
-## Summary
-
-This phase involved setting up the foundational structure of the Salesforce environment for the Retail CRM project. The configuration includes company information, user and role setup, and a comprehensive security model to ensure data visibility and access are correctly managed. This setup provides the essential framework for building the application's features in the subsequent phases.
+This document provides a step-by-step visual and descriptive walkthrough of the setup and configuration performed in Phase 2 for the Retail CRM project.
 
 ---
 
-## Key Configurations
+### 1. Company Information
 
-### Company & Org Setup
-- **Company Information**: The organization was set up as "Retail CRM Pvt Ltd" with the default time zone set to **(GMT+05:30) India Standard Time (Asia/Kolkata)**.
-- **Business Hours & Holidays**: Business hours were established for **Monday-Saturday, 9:00 AM to 9:00 PM IST**. Sunday is configured as a non-working day. Key national holidays were added to manage service level agreements accurately.
-- **Fiscal Year**: A **Custom Fiscal Year** was enabled to run from April to March, aligning with standard Indian business and tax cycles.
+**Description:** The organization was set up as "Retail CRM Pvt Ltd". The default time zone was configured to **(GMT+05:30) India Standard Time (Asia/Kolkata)** to ensure all date and time fields align with the project's regional context.
 
-### User & Role Management
-- **Users Created**: Five users were created to simulate the retail team:
-  - **Salesforce License Users**: System Admin, Sales Agent, Service Agent.
-  - **Chatter License Users**: Marketing Manager, Regional Manager (*see license note below*).
-- **Role Hierarchy**: A role hierarchy was established to model the organizational structure, with the CEO at the top, followed by managers and agents.
+![Company Information](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_02_CompanyInformation.png)
 
 ---
 
-## Security Model
+### 2. Business Hours & Holidays
 
-### Profiles & Permission Sets
-- **Custom Profiles**: The standard `Standard User` profile was cloned to create a `Sales Agent Profile` and a `Service Agent Profile`, allowing for specific object and field permissions.
-- **Permission Sets**: An **"Export Reports"** permission set was created to grant specific users the ability to export report data without altering their base profile.
+**Description:** Business hours were established for **Monday through Saturday, 9:00 AM to 9:00 PM IST**. Sunday is designated as a non-working day, preventing case escalations. Key national holidays were also added to manage service level agreements accurately.
 
-### Sharing & Visibility
-- **Organization-Wide Defaults (OWD)**: The `Order` object's default internal access was set to **Private** to ensure that users can only see records they own by default.
-- **Sharing Rules**: An owner-based sharing rule was created to grant the Marketing Group **Read-Only** access to all orders owned by users in the Sales Agent role.
-- **Field-Level Security (FLS)**: FLS was configured for the custom `Service Level` field on the Order object, making it editable for Sales Agents but **Read-Only** for Service Agents.
+![Business Hours](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_03_BusinessHours.png)
 
-### Access Policies
-- **Login Hours**: Login hours for the `Sales Agent Profile` were restricted to business hours **(Monday-Saturday, 9:00 AM - 9:00 PM IST)**, preventing off-hour access.
-- **Password Policies**: Org-wide password policies were strengthened to require a 90-day expiration and complexity including letters and numbers.
-- **Session Settings**: The session timeout was set to 2 hours of inactivity for enhanced security.
+![Holidays](httpse://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_03_Holidays.png)
 
 ---
 
-## Important Note on License Limitations
+### 3. User & Role Management
 
-Due to the license limitations in a Salesforce Developer Edition org, the **Marketing Manager** and **Regional Manager** roles were created using Chatter Free/Moderator licenses. As these licenses do not support Role assignments or full CRM object access, they were excluded from the Role Hierarchy. This approach demonstrates an understanding of managing user setup within real-world platform constraints.
+**Description:** Five users were created to simulate the core retail team. A role hierarchy was then established to model the organizational structure, ensuring a proper chain of command for data visibility and reporting.
+
+**Note on Licenses:** Due to Developer Edition license limits, the Marketing Manager and Regional Manager were created with Chatter licenses and thus are not part of the formal role hierarchy, demonstrating an understanding of platform constraints.
+
+![Users List](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_05_Users_List.png)
+
+![Role Hierarchy](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_06_Roles.png)
 
 ---
 
-## Deliverables (Screenshots)
+### 4. Custom Profiles & Permission Sets
 
-1.  `Phase2_02_CompanyInformation.png`
-2.  `Phase2_03_BusinessHours.png`
-3.  `Phase2_03_Holidays.png`
-4.  `Phase2_05_Users_List.png`
-5.  `Phase2_06_Roles.png`
-6.  `Phase2_06_Profiles_List.png`
-7.  `Phase2_06_PermissionSets.png`
-8.  `Phase2_08_SharingRule_Orders.png`
-9. `Phase2_09_LoginHours_SalesAgent.png`
-10. `Phase2_07_FLS_ServiceLevel.png`
-11. `Phase2_07_PageLayout_SalesAgent.png`
-12. `Phase2_08_SalesAgent_CreateOrder.png`
-13. `Phase2_08_ServiceAgent_ReadOnly.png`
-14. `Phase2_09_SessionSettings.png`
-15. `Phase2_09_PasswordPolicies.png`
+**Description:** To manage permissions granularly, the standard user profile was cloned to create a **Sales Agent Profile** and a **Service Agent Profile**. Additionally, an **"Export Reports" Permission Set** was created to grant specific users extra capabilities without altering their base profile.
+
+![Profiles List](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_06_Profiles_List.png)
+
+![Permission Sets](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_06_PermissionSets.png)
+
+---
+
+### 5. Sharing Model (OWD & Sharing Rules)
+
+**Description:** The security model was established by setting the `Order` object's Organization-Wide Default (OWD) to **Private**. This ensures records are secure by default. An owner-based sharing rule was then created to grant the Marketing Group **Read-Only** access to orders owned by Sales Agents.
+
+![OWD Settings](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_07_OWD.png)
+
+![Sharing Rule for Orders](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_08_SharingRule_Orders.png)
+
+---
+
+### 6. Access Policies
+
+**Description:** User access was secured through Login Hours and strengthened password policies. Login hours for the Sales Agent profile were restricted to business hours to prevent off-hour access. Org-wide password policies and session timeouts were configured to enhance overall security.
+
+![Login Hours](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_09_LoginHours_SalesAgent.png)
+
+![Password Policies](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_09_PasswordPolicies.png)
+
+![Session Settings](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_09_SessionSettings.png)
+
+---
+
+### 7. Field-Level Security (FLS) & Page Layouts
+
+**Description:** A custom `Service Level` field was created on the Order object. FLS was configured to make this field **editable for Sales Agents** but **Read-Only for Service Agents**. The field was then added to the appropriate page layout to be visible to users.
+
+**<-- IMPORTANT: ADD YOUR FLS SCREENSHOT HERE -->**
+![FLS for Service Level](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_07_FLS_ServiceLevel.png)
+
+![Page Layout](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_07_PageLayout_SalesAgent.png)
+
+---
+
+### 8. Final Verification
+
+**Description:** The security configurations were verified by logging in as both the Sales and Service Agents. The Sales Agent was able to create and edit the `Service Level` field. The Service Agent was able to see the field, but it was correctly locked and read-only, confirming that all security settings were working as designed.
+
+![Sales Agent View (Editable)](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_08_SalesAgent_CreateOrder.png)
+
+**<-- IMPORTANT: ADD YOUR SERVICE AGENT READ-ONLY SCREENSHOT HERE -->**
+![Service Agent View (Read-Only)](https://raw.githubusercontent.com/Sathwik231012/Retail-CRM-Salesforce-Project/main/Phase%202/Phase2_08_ServiceAgent_ReadOnly.png)
